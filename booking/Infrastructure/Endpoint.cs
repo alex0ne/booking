@@ -1,4 +1,6 @@
-﻿namespace HotelBookingSystem.Infrastructure
+﻿using HotelBookingSystem.Interfaces;
+
+namespace HotelBookingSystem.Infrastructure
 {
     using System;
     using System.Collections.Generic;

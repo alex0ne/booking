@@ -1,4 +1,6 @@
-﻿namespace HotelBookingSystem.Controllers
+﻿using HotelBookingSystem.Interfaces;
+
+namespace HotelBookingSystem.Controllers
 {
     using System;
     using System.Linq;

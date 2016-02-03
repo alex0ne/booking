@@ -7,8 +7,8 @@
     <ProjectGuid>{45C30131-BED7-4495-86EF-09FF9C4E7193}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>booking</RootNamespace>
-    <AssemblyName>Чепеларе</AssemblyName>
+    <RootNamespace>HotelBookingSystem</RootNamespace>
+    <AssemblyName>HotelBookingSystem</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -56,6 +56,13 @@
     <Compile Include="Infrastructure\Controller.cs" />
     <Compile Include="Infrastructure\Endpoint.cs" />
     <Compile Include="Infrastructure\View.cs" />
+    <Compile Include="Interfaces\IDbEntity.cs" />
+    <Compile Include="Interfaces\IEndpoint.cs" />
+    <Compile Include="Interfaces\IEngine.cs" />
+    <Compile Include="Interfaces\IHotelBookingSystemData.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Interfaces\IView.cs" />
     <Compile Include="Models\AvailableDate.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Roles.cs" />

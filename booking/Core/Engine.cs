@@ -1,4 +1,6 @@
-﻿namespace HotelBookingSystem.Core
+﻿using HotelBookingSystem.Interfaces;
+
+namespace HotelBookingSystem.Core
 {
     using System;
     using System.Globalization;

@@ -1,4 +1,6 @@
-﻿namespace HotelBookingSystem.Models
+﻿using HotelBookingSystem.Interfaces;
+
+namespace HotelBookingSystem.Models
 {
     using System;
 
