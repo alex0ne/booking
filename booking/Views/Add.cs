@@ -1,15 +1,14 @@
-﻿namespace HotelBookingSystem.Views.Vеnues
+namespace HotelBookingSystem.Views
 {
     using System.Text;
-    using HotelBookingSystem.Infrastructure;
-    using HotelBookingSystem.Models;
+    using Infrastructure;
+    using Models;
 
     public class Add : View
     {
         public Add(Venue venue)
             : base(venue)
         {
-            // https://awesomecommentphotos.files.wordpress.com/2013/08/1003531_560612187329667_1660736981_n.jpg?w=326
         }
 
         protected override void BuildViewResult(StringBuilder viewResult)

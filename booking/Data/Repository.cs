@@ -1,16 +1,13 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Data
+﻿namespace HotelBookingSystem.Data
 {
-    using System;
     using System.Collections.Generic;
-
     using System.Linq;
+    using Interfaces;
 
     public class Repository<T> : IRepository<T> where T : IDbEntity
     {
+        private readonly Dictionary<int, T> items;
         private int nextAddId = 1;
-        private Dictionary<int, T> items;
 
         public Repository()
         {
@@ -49,13 +46,7 @@ namespace HotelBookingSystem.Data
         public virtual bool Update(int id, T newItem)
         {
             var item = this.Get(id);
-            if (item == null)
-            {
-                return false;
-            }
-
-            item = newItem;
-            return true;
+            return item != null;
         }
 
         public virtual bool Delete(int id)

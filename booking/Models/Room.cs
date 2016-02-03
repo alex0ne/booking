@@ -1,9 +1,8 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Models
+﻿namespace HotelBookingSystem.Models
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces;
 
     public class Room : IDbEntity
     {
@@ -56,8 +55,8 @@ namespace HotelBookingSystem.Models
             }
         }
 
-        public ICollection<AvailableDate> AvailableDates { get; protected set; }
+        public ICollection<AvailableDate> AvailableDates { get; private set; }
 
-        public ICollection<Booking> Bookings { get; set; }
+        public ICollection<Booking> Bookings { get; private set; }
     }
 }

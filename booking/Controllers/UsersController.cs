@@ -1,9 +1,9 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Controllers
+﻿namespace HotelBookingSystem.Controllers
 {
     using System;
+    using System.Linq;
     using Infrastructure;
+    using Interfaces;
     using Models;
     using Utilities;
 
@@ -71,12 +71,9 @@ namespace HotelBookingSystem.Controllers
 
         private void EnsureNoLoggedInUser()
         {
-            foreach (var user in this.Data.RepositoryWithUsers.GetAll())
+            if (this.Data.RepositoryWithUsers.GetAll().Any(user => string.IsNullOrEmpty(user.Username) || (this.CurrentUser != null && this.CurrentUser.Username == user.Username)))
             {
-                if (string.IsNullOrEmpty(user.Username) || (this.CurrentUser != null && this.CurrentUser.Username == user.Username))
-                {
-                    throw new ArgumentException("There is already a logged in user.");
-                }
+                throw new ArgumentException("There is already a logged in user.");
             }
         }
     }

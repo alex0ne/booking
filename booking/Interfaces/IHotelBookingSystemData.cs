@@ -1,7 +1,7 @@
-using HotelBookingSystem.Models;
-
 namespace HotelBookingSystem.Interfaces
 {
+    using Models;
+
     public interface IHotelBookingSystemData
     {
         IUserRepository RepositoryWithUsers { get; }

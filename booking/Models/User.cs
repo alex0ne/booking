@@ -1,10 +1,9 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Models
+﻿namespace HotelBookingSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using HotelBookingSystem.Utilities;
+    using Interfaces;
+    using Utilities;
 
     public class User : IDbEntity
     {
@@ -32,7 +31,7 @@ namespace HotelBookingSystem.Models
             {
                 if (string.IsNullOrEmpty(value) || value.Length < 5)
                 {
-                    throw new ArgumentException(string.Format("The username must be at least 5 symbols long."));
+                    throw new ArgumentException("The username must be at least 5 symbols long.");
                 }
 
                 this.username = value;
@@ -50,7 +49,7 @@ namespace HotelBookingSystem.Models
             {
                 if (string.IsNullOrEmpty(value) || value.Length < 6)
                 {
-                    throw new ArgumentException(string.Format("The password must be at least 6 symbols long."));
+                    throw new ArgumentException("The password must be at least 6 symbols long.");
                 }
 
                 this.passwordHash = HashUtilities.GetSha256Hash(value);

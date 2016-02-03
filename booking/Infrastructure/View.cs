@@ -1,17 +1,16 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Infrastructure
+﻿namespace HotelBookingSystem.Infrastructure
 {
     using System.Text;
+    using Interfaces;
 
     public abstract class View : IView
     {
-        public View(object model)
+        protected View(object model)
         {
             this.Model = model;
         }
 
-        public object Model { get; private set; }
+        public object Model { get; }
 
         public string Display()
         {

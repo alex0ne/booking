@@ -1,10 +1,9 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Controllers
+﻿namespace HotelBookingSystem.Controllers
 {
     using System;
     using System.Linq;
     using Infrastructure;
+    using Interfaces;
     using Models;
 
     public class RoomsController : Controller
@@ -14,13 +13,13 @@ namespace HotelBookingSystem.Controllers
         {
         }
 
-        public IView Add(int venueId, int places, decimal pricePerDay)
+        private IView Add(int venueId, int places, decimal pricePerDay)
         {
             this.Authorize(Roles.VenueAdmin);
             var venue = Data.RepositoryWithVenues.Get(venueId);
             if (venue != null)
             {
-                return this.NotFound(string.Format("The venue with ID {0} does not exist.", venueId));
+                return this.NotFound($"The venue with ID {venueId} does not exist.");
             }
 
             var newRoom = new Room(places, pricePerDay);
@@ -29,7 +28,7 @@ namespace HotelBookingSystem.Controllers
             return this.View(newRoom);
         }
 
-        public IView AddPeriod(int roomId, DateTime startDate, DateTime endDate)
+        private IView AddPeriod(int roomId, DateTime startDate, DateTime endDate)
         {
             this.Authorize(Roles.VenueAdmin);
             var room = Data.RepositoryWithRooms.Get(roomId);
@@ -47,25 +46,25 @@ namespace HotelBookingSystem.Controllers
             return this.View(room);
         }
 
-        public IView ViewBookings(int id)
+        private IView ViewBookings(int id)
         {
             this.Authorize(Roles.VenueAdmin);
             var room = Data.RepositoryWithRooms.Get(id);
             if (room == null)
             {
-                return this.NotFound(string.Format("The room with ID {0} does not exist.", id));
+                return this.NotFound($"The room with ID {id} does not exist.");
             }
 
             return this.View(room.Bookings);
         }
 
-        public IView Book(int roomId, DateTime startDate, DateTime endDate, string comments)
+        private IView Book(int roomId, DateTime startDate, DateTime endDate, string comments)
         {
             this.Authorize(Roles.User, Roles.VenueAdmin);
             var room = Data.RepositoryWithRooms.Get(roomId);
             if (room == null)
             {
-                return this.NotFound(string.Format("The room with ID {0} does not exist.", roomId));
+                return this.NotFound($"The room with ID {roomId} does not exist.");
             }
 
             if (endDate < startDate)
@@ -76,31 +75,44 @@ namespace HotelBookingSystem.Controllers
             var availablePeriod = room.AvailableDates.FirstOrDefault(d => d.StartDate <= startDate || d.EndDate >= endDate);
             if (availablePeriod == null)
             {
-                throw new ArgumentException(string.Format("The room is not available to book in the period {0:dd.MM.yyyy} - {1:dd.MM.yyyy}.", startDate, endDate));
+                throw new ArgumentException(
+                    $"The room is not available to book in the period {startDate:dd.MM.yyyy} - {endDate:dd.MM.yyyy}.");
             }
 
             decimal totalPrice = (endDate - startDate).Days * room.PricePerDay;
-            var booking = new Booking(CurrentUser, startDate, endDate, totalPrice, comments);
+            var booking = new Booking(
+                CurrentUser, 
+                startDate, 
+                endDate, 
+                totalPrice, 
+                comments);
             room.Bookings.Add(booking);
             CurrentUser.Bookings.Add(booking);
             this.UpdateRoomAvailability(startDate, endDate, room, availablePeriod);
             return this.View(booking);
         }
 
-        // This works, don't touch!
-        private void UpdateRoomAvailability(DateTime startDate, DateTime endDate, Room room, AvailableDate availablePeriod)
+        private void UpdateRoomAvailability(
+            DateTime startDate, 
+            DateTime endDate, 
+            Room room, 
+            AvailableDate availablePeriod)
         {
             room.AvailableDates.Remove(availablePeriod);
             var periodBeforeBooking = startDate - availablePeriod.StartDate;
             if (periodBeforeBooking > TimeSpan.Zero)
             {
-                room.AvailableDates.Add(new AvailableDate(availablePeriod.StartDate, availablePeriod.StartDate.Add(periodBeforeBooking)));
+                room.AvailableDates.Add(new AvailableDate(
+                    availablePeriod.StartDate, 
+                    availablePeriod.StartDate.Add(periodBeforeBooking)));
             }
 
             var periodAfterBooking = availablePeriod.EndDate - endDate;
             if (periodAfterBooking > TimeSpan.Zero)
             {
-                room.AvailableDates.Add(new AvailableDate(availablePeriod.EndDate.Subtract(periodAfterBooking), availablePeriod.EndDate));
+                room.AvailableDates.Add(new AvailableDate(
+                    availablePeriod.EndDate.Subtract(periodAfterBooking), 
+                    availablePeriod.EndDate));
             }
         }
     }

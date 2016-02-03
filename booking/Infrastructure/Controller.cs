@@ -1,15 +1,14 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Infrastructure
+﻿namespace HotelBookingSystem.Infrastructure
 {
     using System;
     using System.Diagnostics;
     using System.Linq;
     using System.Reflection;
-    using HotelBookingSystem.Identity;
-    using HotelBookingSystem.Models;
-    using HotelBookingSystem.Utilities;
-    using HotelBookingSystem.Views.Shared;
+    using Identity;
+    using Interfaces;
+    using Models;
+    using Utilities;
+    using Views.Shared;
 
     public class Controller
     {
@@ -19,29 +18,21 @@ namespace HotelBookingSystem.Infrastructure
             this.CurrentUser = user;
         }
 
-        public User CurrentUser { get; set; }
-
-        public bool HasCurrentUser
-        {
-            get { return this.CurrentUser != null; }
-        }
+        public User CurrentUser { get; protected set; }
 
         protected IHotelBookingSystemData Data { get; private set; }
 
-        protected IView View(object model)
+        private bool HasCurrentUser
         {
-            string fullNamespace = this.GetType().Namespace;
-            int firstSeparatorIndex = fullNamespace.IndexOf(Constants.NamesapceSeparator);
-            string baseNamespace = fullNamespace.Substring(0, firstSeparatorIndex);
-            string controllerName = this.GetType().Name.Replace(Constants.ControllerSuffix, string.Empty);
-            string actionName = new StackTrace().GetFrame(1).GetMethod().Name;
-            string fullPath = string.Join(
-                Constants.NamesapceSeparator,
-                new[] { baseNamespace, Constants.ViewsFolder, controllerName, actionName });
-            var viewType = Assembly
-                .GetExecutingAssembly()
-                .GetType(fullPath);
-            return Activator.CreateInstance(viewType, model) as IView;
+            get
+            {
+                if (this.CurrentUser != null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
         }
 
         protected IView NotFound(string message)
@@ -60,6 +51,22 @@ namespace HotelBookingSystem.Infrastructure
             {
                 throw new AuthorizationFailedException("The currently logged in user doesn't have sufficient rights to perform this operation.", this.CurrentUser);
             }
+        }
+
+        protected IView View(object model)
+        {
+            string fullNamespace = this.GetType().Namespace;
+            int firstSeparatorIndex = fullNamespace.IndexOf(Constants.NamesapceSeparator);
+            string baseNamespace = fullNamespace.Substring(0, firstSeparatorIndex);
+            string controllerName = this.GetType().Name.Replace(Constants.ControllerSuffix, string.Empty);
+            string actionName = new StackTrace().GetFrame(1).GetMethod().Name;
+            string fullPath = string.Join(
+                Constants.NamesapceSeparator,
+                new[] { baseNamespace, Constants.ViewsFolder, controllerName, actionName });
+            var viewType = Assembly
+                .GetExecutingAssembly()
+                .GetType(fullPath);
+            return Activator.CreateInstance(viewType, model) as IView;
         }
     }
 }

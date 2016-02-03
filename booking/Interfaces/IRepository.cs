@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-
 namespace HotelBookingSystem.Interfaces
 {
+    using System.Collections.Generic;
+
     public interface IRepository<T>
     {
         IEnumerable<T> GetAll();

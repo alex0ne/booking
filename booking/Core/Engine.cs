@@ -1,6 +1,4 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Core
+﻿namespace HotelBookingSystem.Core
 {
     using System;
     using System.Globalization;
@@ -8,6 +6,7 @@ namespace HotelBookingSystem.Core
     using System.Reflection;
     using Data;
     using Infrastructure;
+    using Interfaces;
     using Models;
     using Utilities;
     using Views.Shared;

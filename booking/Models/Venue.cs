@@ -1,21 +1,29 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Models
+﻿namespace HotelBookingSystem.Models
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces;
 
     public class Venue : IDbEntity
     {
-        private string name = string.Empty;
+        private readonly string name = string.Empty;
         private string address;
+        private User currentUser;
 
-        public Venue(string name, string address, string description, User owner)
+        public Venue(string name, string address, string description, User owner, ICollection<Room> rooms)
         {
             this.Name = name;
             this.Address = address;
             this.Description = description;
-            this.Owner = owner;
+            this.Rooms = rooms;
+        }
+
+        public Venue(string name, string address, string description, User currentUser)
+        {
+            this.name = name;
+            this.address = address;
+            this.Description = description;
+            this.currentUser = currentUser;
         }
 
         public int Id { get; set; }
@@ -31,7 +39,7 @@ namespace HotelBookingSystem.Models
             {
                 if (string.IsNullOrEmpty(value) || value.Length < 3)
                 {
-                    throw new ArgumentException(string.Format("The venue name must be at least 3 symbols long."));
+                    throw new ArgumentException("The venue name must be at least 3 symbols long.");
                 }
             }
         }
@@ -47,17 +55,15 @@ namespace HotelBookingSystem.Models
             {
                 if (string.IsNullOrEmpty(value) || value.Length < 3)
                 {
-                    throw new ArgumentException(string.Format("The venue address must be at least 3 symbols long."));
+                    throw new ArgumentException("The venue address must be at least 3 symbols long.");
                 }
 
                 this.address = value;
             }
         }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
 
-        public User Owner { get; set; }
-
-        public ICollection<Room> Rooms { get; set; }
+        public ICollection<Room> Rooms { get; private set; }
     }
 }

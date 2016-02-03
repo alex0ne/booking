@@ -1,8 +1,8 @@
-﻿using System;
-using HotelBookingSystem.Core;
-
-namespace booking
+﻿namespace HotelBookingSystem
 {
+    using System;
+    using Core;
+
     public static class HotelBookingSystemMain
     {
         public static void Main()

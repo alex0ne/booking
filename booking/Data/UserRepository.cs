@@ -1,14 +1,13 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Data
+﻿namespace HotelBookingSystem.Data
 {
     using System;
     using System.Collections.Generic;
+    using Interfaces;
     using Models;
 
     public class UserRepository : Repository<User>, IUserRepository
     {
-        private Dictionary<string, User> usersByUsername;
+        private readonly Dictionary<string, User> usersByUsername;
 
         public UserRepository()
         {

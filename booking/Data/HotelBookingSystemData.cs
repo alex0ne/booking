@@ -1,7 +1,6 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Data
+﻿namespace HotelBookingSystem.Data
 {
+    using Interfaces;
     using Models;
 
     public class HotelBookingSystemData : IHotelBookingSystemData
@@ -16,10 +15,10 @@ namespace HotelBookingSystem.Data
 
         public IUserRepository RepositoryWithUsers { get; private set; }
 
-        public IRepository<Venue> RepositoryWithVenues { get; set; }
+        public IRepository<Venue> RepositoryWithVenues { get; private set; }
 
-        public IRepository<Room> RepositoryWithRooms { get; set; }
+        public IRepository<Room> RepositoryWithRooms { get; private set; }
 
-        public IRepository<Booking> RepositoryWithBookings { get; set; }
+        public IRepository<Booking> RepositoryWithBookings { get; private set; }
     }
 }

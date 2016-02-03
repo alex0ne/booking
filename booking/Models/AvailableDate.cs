@@ -2,7 +2,6 @@
 {
     using System;
 
-    // Egyptian brackets FTW!
     public class AvailableDate
     {
         public AvailableDate(DateTime startDate, DateTime endDate)
@@ -17,12 +16,12 @@
 
         public DateTime StartDate
         {
-            get; internal set;
+            get; private set;
         }
 
         public DateTime EndDate
         {
-            get; internal set;
+            get; private set;
         }
     }
 }

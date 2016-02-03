@@ -1,11 +1,10 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Infrastructure
+﻿namespace HotelBookingSystem.Infrastructure
 {
     using System;
     using System.Collections.Generic;
     using System.Net;
-    using HotelBookingSystem.Utilities;
+    using Interfaces;
+    using Utilities;
 
     public class Endpoint : IEndpoint
     {

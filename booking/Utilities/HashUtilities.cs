@@ -3,7 +3,7 @@
     using System.Security.Cryptography;
     using System.Text;
 
-    public class HashUtilities
+    public static class HashUtilities
     {
         public static string GetSha256Hash(string text)
         {

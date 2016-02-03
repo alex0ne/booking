@@ -1,9 +1,8 @@
-﻿using HotelBookingSystem.Interfaces;
-
-namespace HotelBookingSystem.Controllers
+﻿namespace HotelBookingSystem.Controllers
 {
     using System;
     using Infrastructure;
+    using Interfaces;
     using Models;
 
     public class VenuesController : Controller
@@ -23,12 +22,7 @@ namespace HotelBookingSystem.Controllers
         {
             this.Authorize(Roles.User, Roles.VenueAdmin);
             var venue = this.Data.RepositoryWithVenues.Get(venueId);
-            if (venue == null)
-            {
-                return this.NotFound(string.Format("The venue with ID {0} does not exist.", venueId));
-            }
-
-            return this.View(venue);
+            return venue == null ? this.NotFound($"The venue with ID {venueId} does not exist.") : this.View(venue);
         }
 
         public IView Rooms(int id)
