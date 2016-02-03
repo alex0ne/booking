@@ -46,11 +46,11 @@
     <Compile Include="Controllers\RoomsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VenuesController.cs" />
-    <Compile Include="Енджин.cs" />
+    <Compile Include="Core\Engine.cs" />
     <Compile Include="Data\HotelBookingSystemData.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="Data\UserRepository.cs" />
-    <Compile Include="Chepelare.cs" />
+    <Compile Include="HotelBookingSystemMain.cs" />
     <Compile Include="Identity\AuthorizationFailedException.cs" />
     <Compile Include="Identity\UserExtensions.cs" />
     <Compile Include="Infrastructure\Controller.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="Views\UsersViews.cs" />
     <Compile Include="Views\VenuesViews.cs" />
     <Compile Include="Views\Venues_Add.cs" />
-    <Compile Include="РазниРаботи.cs" />
+    <Compile Include="Interfaces\РазниРаботи.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

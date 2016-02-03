@@ -10,7 +10,7 @@
     using Utilities;
     using Views.Shared;
 
-    public class Енджин : IEngine
+    public class Engine : IEngine
     {
         public void StartOperation()
         {
