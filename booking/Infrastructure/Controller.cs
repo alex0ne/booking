@@ -1,13 +1,13 @@
 ﻿namespace HotelBookingSystem.Infrastructure
 {
-    using HotelBookingSystem.Identity;
-    using HotelBookingSystem.Models;
-    using HotelBookingSystem.Utilities;
-    using HotelBookingSystem.Views.Shared;
     using System;
     using System.Diagnostics;
     using System.Linq;
     using System.Reflection;
+    using HotelBookingSystem.Identity;
+    using HotelBookingSystem.Models;
+    using HotelBookingSystem.Utilities;
+    using HotelBookingSystem.Views.Shared;
 
     public class Controller
     {
@@ -19,7 +19,10 @@
 
         public User CurrentUser { get; set; }
 
-        public bool HasCurrentUser { get { return this.CurrentUser != null; } }
+        public bool HasCurrentUser
+        {
+            get { return this.CurrentUser != null; }
+        }
 
         protected IHotelBookingSystemData Data { get; private set; }
 

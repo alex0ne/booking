@@ -1,20 +1,10 @@
 ﻿namespace HotelBookingSystem.Views.Rooms
 {
-    using System.Text;
-    using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using Microsoft.CSharp;
-    using System.Security;
-    using System.Xml;
-    using System.Net;
-    using HotelBookingSystem.Models;
-    using System.IO;
-    using System.IO.Compression;
     using System.Linq;
+    using System.Text;
     using HotelBookingSystem.Infrastructure;
-    using HotelBookingSystem.Controllers;
-    using System.Data.Sql;
+    using HotelBookingSystem.Models;
 
     public class Add : View
     {
@@ -68,12 +58,14 @@
         protected override void BuildViewResult(StringBuilder viewResult)
         {
             var bookings = this.Model as IEnumerable<Booking>;
-            if (!bookings.Any())
-                viewResult.AppendLine("There are no bookings for this room.");
-            else
-                viewResult.AppendLine("Room bookings:");
+
+            viewResult.AppendLine(!bookings.Any() ? "There are no bookings for this room." : "Room bookings:");
+
             foreach (var booking in bookings)
+            {
                 viewResult.AppendFormat("* {0:dd.MM.yyyy} - {1:dd.MM.yyyy} (${2:F2})", booking.StartBookDate, booking.EndBookDate, booking.TotalPrice).AppendLine();
+            }
+
             viewResult.AppendFormat("Total booking price: ${0:F2}", bookings.Sum(b => b.TotalPrice)).AppendLine();
         }
     }

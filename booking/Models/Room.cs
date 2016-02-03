@@ -7,6 +7,7 @@
     {
         private int places;
         private decimal pricePerDay;
+
         public Room(int places, decimal pricePerDay)
         {
             this.Places = places;
@@ -30,19 +31,25 @@
                 {
                     throw new ArgumentException("The places must not be less than 0.");
                 }
+
                 this.places = value;
             }
         }
 
         public decimal PricePerDay
         {
-            get { return this.pricePerDay; }
-            internal set
+            get
+            {
+                return this.pricePerDay;
+            }
+
+            private set
             {
                 if (value < 0)
                 {
                     throw new ArgumentException("The price per day must not be less than 0.");
                 }
+
                 this.pricePerDay = value;
             }
         }

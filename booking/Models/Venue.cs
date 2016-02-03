@@ -1,36 +1,12 @@
 ﻿namespace HotelBookingSystem.Models
 {
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
 
     public class Venue : IDbEntity
     {
-        public int Id { get; set; }
-        public string Name
-        {
-            get { return this.name; }
-            private set
-            {
-
-                if (string.IsNullOrEmpty(value) || value.Length < 3)
-                {
-                    throw new ArgumentException(string.Format("The venue name must be at least 3 symbols long."));
-                }
-            }
-        }
-        public string Address
-        {
-            get { return this.address; }
-            private set
-            {
-                if (string.IsNullOrEmpty(value) || value.Length < 3)
-                    throw new ArgumentException(string.Format("The venue address must be at least 3 symbols long."));
-                this.address = value;
-            }
-        }
-        public string Description { get; set; }
-        public User Owner { get; set; }
-        public ICollection<Room> Rooms { get; set; }
+        private string name = string.Empty;
+        private string address;
 
         public Venue(string name, string address, string description, User owner)
         {
@@ -40,7 +16,46 @@
             this.Owner = owner;
         }
 
-        private string name = string.Empty;
-        private string address;
+        public int Id { get; set; }
+
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            private set
+            {
+                if (string.IsNullOrEmpty(value) || value.Length < 3)
+                {
+                    throw new ArgumentException(string.Format("The venue name must be at least 3 symbols long."));
+                }
+            }
+        }
+
+        public string Address
+        {
+            get
+            {
+                return this.address;
+            }
+
+            private set
+            {
+                if (string.IsNullOrEmpty(value) || value.Length < 3)
+                {
+                    throw new ArgumentException(string.Format("The venue address must be at least 3 symbols long."));
+                }
+
+                this.address = value;
+            }
+        }
+
+        public string Description { get; set; }
+
+        public User Owner { get; set; }
+
+        public ICollection<Room> Rooms { get; set; }
     }
 }

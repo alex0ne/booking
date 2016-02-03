@@ -3,7 +3,6 @@
     using System;
     using Infrastructure;
     using Models;
-    using System.Linq;
 
     public class VenuesController : Controller
     {

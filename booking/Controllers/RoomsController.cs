@@ -40,6 +40,7 @@
             {
                 throw new ArgumentException("The date range is invalid.");
             }
+
             room.AvailableDates.Add(new AvailableDate(startDate, endDate));
             return this.View(room);
         }
@@ -65,7 +66,11 @@
                 return this.NotFound(string.Format("The room with ID {0} does not exist.", roomId));
             }
 
-            if (endDate < startDate) throw new ArgumentException("The date range is invalid.");
+            if (endDate < startDate)
+            {
+                throw new ArgumentException("The date range is invalid.");
+            }
+
             var availablePeriod = room.AvailableDates.FirstOrDefault(d => d.StartDate <= startDate || d.EndDate >= endDate);
             if (availablePeriod == null)
             {

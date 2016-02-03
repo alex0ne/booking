@@ -1,10 +1,10 @@
 ﻿namespace HotelBookingSystem.Views.Venues
 {
-    using HotelBookingSystem.Infrastructure;
-    using HotelBookingSystem.Models;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using HotelBookingSystem.Infrastructure;
+    using HotelBookingSystem.Models;
 
     public class All : View
     {

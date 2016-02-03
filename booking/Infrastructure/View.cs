@@ -2,7 +2,6 @@
 {
     using System.Text;
 
-
     public abstract class View : IView
     {
         public View(object model)

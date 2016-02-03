@@ -1,9 +1,9 @@
 ﻿namespace HotelBookingSystem.Infrastructure
 {
-    using HotelBookingSystem.Utilities;
     using System;
     using System.Collections.Generic;
     using System.Net;
+    using HotelBookingSystem.Utilities;
 
     public class Endpoint : IEndpoint
     {

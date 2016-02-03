@@ -1,9 +1,9 @@
 ﻿namespace HotelBookingSystem.Views.Users
 {
+    using System.Linq;
     using System.Text;
     using Infrastructure;
     using Models;
-    using System.Linq;
 
     public class Register : View
     {

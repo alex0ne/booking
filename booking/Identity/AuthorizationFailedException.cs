@@ -1,7 +1,7 @@
 ﻿namespace HotelBookingSystem.Identity
 {
-    using HotelBookingSystem.Models;
     using System;
+    using HotelBookingSystem.Models;
 
     public class AuthorizationFailedException : ArgumentException
     {

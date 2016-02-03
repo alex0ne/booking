@@ -1,5 +1,5 @@
-﻿using HotelBookingSystem.Core;
-using System;
+﻿using System;
+using HotelBookingSystem.Core;
 
 public class HotelBookingSystemMain
 {

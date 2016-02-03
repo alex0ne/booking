@@ -1,8 +1,8 @@
 ﻿namespace HotelBookingSystem.Views.Vеnues
 {
+    using System.Text;
     using HotelBookingSystem.Infrastructure;
     using HotelBookingSystem.Models;
-    using System.Text;
 
     public class Add : View
     {

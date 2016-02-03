@@ -5,7 +5,6 @@
 
     using System.Linq;
 
-
     public class Repository<T> : IRepository<T> where T : IDbEntity
     {
         private int nextAddId = 1;
