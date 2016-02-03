@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System;
-namespace HotelBookingSystem.Models
+﻿namespace HotelBookingSystem.Models
 {
+    using System.Collections.Generic;
+    using System;
+
     public class Venue : IDbEntity
     {
         public int Id { get; set; }
@@ -22,7 +23,7 @@ namespace HotelBookingSystem.Models
             get { return this.address; }
             private set
             {
-                if (string.IsNullOrEmpty(value) || value.Length < 3) 
+                if (string.IsNullOrEmpty(value) || value.Length < 3)
                     throw new ArgumentException(string.Format("The venue address must be at least 3 symbols long."));
                 this.address = value;
             }
@@ -33,13 +34,13 @@ namespace HotelBookingSystem.Models
 
         public Venue(string name, string address, string description, User owner)
         {
-            Name = name;
+            this.Name = name;
             this.Address = address;
-            Description = description;
+            this.Description = description;
             this.Owner = owner;
         }
 
         private string name = string.Empty;
-       private string address;
+        private string address;
     }
 }

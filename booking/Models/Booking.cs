@@ -1,6 +1,7 @@
-﻿using System;
-namespace HotelBookingSystem.Models
+﻿namespace HotelBookingSystem.Models
 {
+    using System;
+
     public class Booking : IDbEntity
     {
         private decimal totalPrice;

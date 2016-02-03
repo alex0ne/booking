@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace HotelBookingSystem.Models
+﻿namespace HotelBookingSystem.Models
 {
+    using System;
+    using System.Collections.Generic;
+
     public class Room : IDbEntity
     {
         private int places;

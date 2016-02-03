@@ -1,6 +1,6 @@
-﻿using System;
-namespace HotelBookingSystem.Controllers
+﻿namespace HotelBookingSystem.Controllers
 {
+    using System;
     using Infrastructure;
     using Models;
     using System.Linq;
@@ -15,7 +15,7 @@ namespace HotelBookingSystem.Controllers
         public IView All()
         {
             var venues = this.Data.RepositoryWithVenues.GetAll();
-            return View(venues);
+            return this.View(venues);
         }
 
         public IView Details(int venueId)
@@ -27,7 +27,7 @@ namespace HotelBookingSystem.Controllers
                 return this.NotFound(string.Format("The venue with ID {0} does not exist.", venueId));
             }
 
-            return View(venue);
+            return this.View(venue);
         }
 
         public IView Rooms(int id)
@@ -40,7 +40,7 @@ namespace HotelBookingSystem.Controllers
         {
             var newVenue = new Venue(name, address, description, CurrentUser);
             this.Data.RepositoryWithVenues.Add(newVenue);
-            return View(newVenue);
+            return this.View(newVenue);
         }
     }
 }

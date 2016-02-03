@@ -1,14 +1,14 @@
-﻿using HotelBookingSystem.Identity;
-using HotelBookingSystem.Models;
-using HotelBookingSystem.Utilities;
-using HotelBookingSystem.Views.Shared;
-using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-
-namespace HotelBookingSystem.Infrastructure
+﻿namespace HotelBookingSystem.Infrastructure
 {
+    using HotelBookingSystem.Identity;
+    using HotelBookingSystem.Models;
+    using HotelBookingSystem.Utilities;
+    using HotelBookingSystem.Views.Shared;
+    using System;
+    using System.Diagnostics;
+    using System.Linq;
+    using System.Reflection;
+
     public class Controller
     {
         internal Controller(IHotelBookingSystemData data, User user)
@@ -46,12 +46,12 @@ namespace HotelBookingSystem.Infrastructure
 
         protected void Authorize(params Roles[] roles)
         {
-            if (!HasCurrentUser)
+            if (!this.HasCurrentUser)
             {
                 throw new ArgumentException("There is no currently logged in user.");
             }
 
-            if (!roles.Any(role => CurrentUser.IsInRole(role)))
+            if (!roles.Any(role => this.CurrentUser.IsInRole(role)))
             {
                 throw new AuthorizationFailedException("The currently logged in user doesn't have sufficient rights to perform this operation.", this.CurrentUser);
             }

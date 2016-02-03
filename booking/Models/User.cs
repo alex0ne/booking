@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System;
-using HotelBookingSystem.Utilities;
-
-namespace HotelBookingSystem.Models
+﻿namespace HotelBookingSystem.Models
 {
+    using System.Collections.Generic;
+    using System;
+    using HotelBookingSystem.Utilities;
 
     public class User : IDbEntity
     {
@@ -12,24 +11,24 @@ namespace HotelBookingSystem.Models
 
         public User(string username, string password, Roles role)
         {
-            Username = username;
-            PasswordHash = password;
-            Role = role;
-            Bookings = new List<Booking>();
+            this.Username = username;
+            this.PasswordHash = password;
+            this.Role = role;
+            this.Bookings = new List<Booking>();
         }
 
         public int Id { get; set; }
 
         public string Username
         {
-            get { return this.username; } protected
-            set
+            get { return this.username; }
+            private set
             {
                 if (string.IsNullOrEmpty(value) || value.Length < 5)
                 {
                     throw new ArgumentException(string.Format("The username must be at least 5 symbols long."));
                 }
-                username = value;
+                this.username = value;
             }
         }
 
@@ -42,7 +41,7 @@ namespace HotelBookingSystem.Models
                 {
                     throw new ArgumentException(string.Format("The password must be at least 6 symbols long."));
                 }
-                passwordHash = HashUtilities.GetSha256Hash(value);
+                this.passwordHash = HashUtilities.GetSha256Hash(value);
             }
         }
 

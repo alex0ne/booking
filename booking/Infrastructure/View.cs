@@ -7,7 +7,7 @@
     {
         public View(object model)
         {
-            this.Model = Model;
+            this.Model = model;
         }
 
         public object Model { get; private set; }

@@ -1,11 +1,11 @@
-﻿using HotelBookingSystem.Infrastructure;
-using HotelBookingSystem.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace HotelBookingSystem.Views.Venues
+﻿namespace HotelBookingSystem.Views.Venues
 {
+    using HotelBookingSystem.Infrastructure;
+    using HotelBookingSystem.Models;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+
     public class All : View
     {
         public All(IEnumerable<Venue> venues)

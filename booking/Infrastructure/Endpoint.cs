@@ -1,10 +1,10 @@
-﻿using HotelBookingSystem.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Net;
-
-namespace HotelBookingSystem.Infrastructure
+﻿namespace HotelBookingSystem.Infrastructure
 {
+    using HotelBookingSystem.Utilities;
+    using System;
+    using System.Collections.Generic;
+    using System.Net;
+
     public class Endpoint : IEndpoint
     {
         public Endpoint(string url)

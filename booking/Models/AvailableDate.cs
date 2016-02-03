@@ -1,20 +1,27 @@
-﻿using System;
-namespace HotelBookingSystem.Models {
+﻿namespace HotelBookingSystem.Models
+{
+    using System;
+
     // Egyptian brackets FTW!
-    public class AvailableDate {
-        public AvailableDate(DateTime startDate, DateTime endDate) {
+    public class AvailableDate
+    {
+        public AvailableDate(DateTime startDate, DateTime endDate)
+        {
             this.StartDate = startDate;
             this.EndDate = endDate;
-            if (endDate < startDate) {
+            if (endDate < startDate)
+            {
                 throw new ArgumentException("The date range is invalid.");
             }
         }
 
-        public DateTime StartDate {
+        public DateTime StartDate
+        {
             get; internal set;
         }
 
-        public DateTime EndDate {
+        public DateTime EndDate
+        {
             get; internal set;
         }
     }

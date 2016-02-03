@@ -1,9 +1,9 @@
-﻿using HotelBookingSystem.Infrastructure;
-using HotelBookingSystem.Models;
-using System.Text;
-
-namespace HotelBookingSystem.Views.Vеnues
+﻿namespace HotelBookingSystem.Views.Vеnues
 {
+    using HotelBookingSystem.Infrastructure;
+    using HotelBookingSystem.Models;
+    using System.Text;
+
     public class Add : View
     {
         public Add(Venue venue)

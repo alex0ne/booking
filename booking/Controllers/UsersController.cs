@@ -30,7 +30,7 @@
             Roles userRole = (Roles)Enum.Parse(typeof(Roles), role, true);
             var user = new User(username, password, userRole);
             this.Data.RepositoryWithUsers.Add(user);
-            return View(user);
+            return this.View(user);
         }
 
         public IView Login(string username, string password)
@@ -49,13 +49,13 @@
             }
 
             this.CurrentUser = existingUser;
-            return View(existingUser);
+            return this.View(existingUser);
         }
 
         public IView MyProfile()
         {
             this.Authorize(Roles.User, Roles.VenueAdmin);
-            return View(CurrentUser);
+            return this.View(this.CurrentUser);
         }
 
         public IView Logout()
@@ -64,7 +64,7 @@
 
             var user = this.CurrentUser;
             this.CurrentUser = null;
-            return View(user);
+            return this.View(user);
         }
 
         private void EnsureNoLoggedInUser()
