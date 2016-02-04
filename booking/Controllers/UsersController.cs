@@ -45,7 +45,7 @@
                 throw new ArgumentException(string.Format("A user with username {0} does not exist.", username));
             }
 
-            if (existingUser.PasswordHash != HashUtilities.GetSha256Hash(password))
+            if (existingUser.Password != HashUtilities.GetSha256Hash(password))
             {
                 throw new ArgumentException("The provided password is wrong.");
             }

@@ -8,12 +8,12 @@
     public class User : IDbEntity
     {
         private string username;
-        private string passwordHash;
+        private string password;
 
         public User(string username, string password, Roles role)
         {
             this.Username = username;
-            this.PasswordHash = password;
+            this.Password = password;
             this.Role = role;
             this.Bookings = new List<Booking>();
         }
@@ -38,11 +38,11 @@
             }
         }
 
-        public string PasswordHash
+        public string Password
         {
             get
             {
-                return this.passwordHash;
+                return this.password;
             }
 
             private set
@@ -52,7 +52,7 @@
                     throw new ArgumentException("The password must be at least 6 symbols long.");
                 }
 
-                this.passwordHash = HashUtilities.GetSha256Hash(value);
+                this.password = HashUtilities.GetSha256Hash(value);
             }
         }
 
